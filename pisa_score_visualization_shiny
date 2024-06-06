@@ -1,0 +1,54 @@
+library ("ggplot2")
+library("treemapify")
+library ("tidyverse")
+#Load the data
+citations_data <- read.csv("citations.txt", header = TRUE, sep="\t")
+names(citations_data)
+#Delete firs letter of coloumn names
+names(citations_data)[5:41]  <- sub("^.", "", names(citations_data)[5:41])
+citations_data[is.na(citations_data)] <- 0
+citations_data$Cited<-ifelse(citations_data[,41]>0,"Cited","Uncited")
+
+#Create a grouped data frame
+citation_group <- aggregate(citations_data[,41] ~ 
+                            Topic  + Type, data = citations_data, sum)
+names(citation_group)[3]  <- "Citations" #rename column
+
+#Treemap plot
+ggplot(citation_group, aes(area = Citations, fill = Type,
+                           label = paste(Topic, Citations, sep = "\n"), 
+                           subgroup = Type)) +
+  geom_treemap() +  geom_treemap_text(size = 12) + 
+  geom_treemap_subgroup_border() + 
+  geom_treemap_subgroup_text(place = "centre",alpha = 0.5) +
+  ggtitle("Citations by Type and Topic")
+
+#Combine date into one coloumn data
+citations_com <- citations_data #Duplicate data
+dim(citations_com)
+citations_com <- pivot_longer(citations_com, 
+                              cols = names(citations_com)[5:41], 
+                              values_to = "Citations", 
+                              names_to = "Date") #Combine date into one column
+#Convert into date type
+citations_com$Date <- as.Date(citations_com$Date, format = "%d.%m.%Y")
+sapply(citations_com, function(x) class(x)) #check the class
+citations_com <- aggregate(Citations ~ Topic  + Date, data = citations_com, sum)
+head(citations_com)
+
+#Line Chart
+ggplot(citations_com, aes(x=Date, y=Citations, group=Topic)) +
+  geom_line(aes(color=Topic), size = 1) + theme_minimal()+
+  ggtitle("Number of Citations by Topic",
+          subtitle = "From Nov-2017 to Des-2020")
+  
+# Number of research papers cited
+citations_data$index <- 1
+cited_group <- aggregate(index ~ Topic + Type + Cited, 
+                         data = citations_data, sum)
+
+#Barplot
+ggplot(cited_group, aes(fill=Cited, y=Topic, x=index)) + 
+  geom_bar(position="stack", stat="identity")+ 
+  facet_grid(Type ~ ., switch = "y") + geom_text (aes(label=index))+
+  ggtitle("Number of Cited and Uncited Papers")
