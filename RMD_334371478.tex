@@ -1,0 +1,1335 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={RMD\_334371478},
+  pdfauthor={334371478},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{RMD\_334371478}
+\author{334371478}
+\date{2024-03-28}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list =} \FunctionTok{ls}\NormalTok{())}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\AttributeTok{file =} \StringTok{"diabetes.csv"}\NormalTok{,}\AttributeTok{header=}\ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Age          Diabetes              BMI           Glucose      
+##  Min.   :21.00   Length:724         Min.   :18.20   Min.   : 44.00  
+##  1st Qu.:24.00   Class :character   1st Qu.:27.50   1st Qu.: 99.75  
+##  Median :29.00   Mode  :character   Median :32.40   Median :117.00  
+##  Mean   :33.35                      Mean   :32.47   Mean   :121.88  
+##  3rd Qu.:41.00                      3rd Qu.:36.60   3rd Qu.:142.00  
+##  Max.   :81.00                      Max.   :67.10   Max.   :199.00  
+##     Pressure        Pregnant     
+##  Min.   : 24.0   Min.   : 0.000  
+##  1st Qu.: 64.0   1st Qu.: 1.000  
+##  Median : 72.0   Median : 3.000  
+##  Mean   : 72.4   Mean   : 3.866  
+##  3rd Qu.: 80.0   3rd Qu.: 6.000  
+##  Max.   :122.0   Max.   :17.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{Diabetes}\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{ (data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{train\_data }\OtherTok{\textless{}{-}}\NormalTok{ data[}\DecValTok{225}\SpecialCharTok{:}\DecValTok{724}\NormalTok{,]}
+\NormalTok{test\_data }\OtherTok{\textless{}{-}}\NormalTok{ data[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{224}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Task 1 Relationship between variables}
+\FunctionTok{library}\NormalTok{(GGally)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+## Registered S3 method overwritten by 'GGally':
+##   method from   
+##   +.gg   ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_eda }\OtherTok{\textless{}{-}}\NormalTok{ data[,}\FunctionTok{c}\NormalTok{(}\StringTok{"Age"}\NormalTok{,}\StringTok{"BMI"}\NormalTok{,}\StringTok{"Glucose"}\NormalTok{,}\StringTok{"Pressure"}\NormalTok{,}\StringTok{"Pregnant"}\NormalTok{,}\StringTok{"Diabetes"}\NormalTok{)]}
+\FunctionTok{ggpairs}\NormalTok{(data\_eda)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#2 Naive Classifier}
+\NormalTok{diabetes\_count }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(train\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{majority }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(diabetes\_count)[}\FunctionTok{which.max}\NormalTok{(diabetes\_count)]}
+
+\CommentTok{\# Calculate error rate for naïve classifier}
+\NormalTok{error\_rate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(test\_data}\SpecialCharTok{$}\NormalTok{Diabetes }\SpecialCharTok{==}\NormalTok{ majority)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate Naive Classifier:"}\NormalTok{, error\_rate))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate Naive Classifier: 0.388392857142857"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'caret' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: lattice
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#K{-}Fold CV}
+\NormalTok{ctrl }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method=}\StringTok{"cv"}\NormalTok{, }
+                     \AttributeTok{number=}\DecValTok{10}\NormalTok{, }
+                     \AttributeTok{savePredictions=}\StringTok{"all"}\NormalTok{,}
+                     \AttributeTok{classProbs=}\ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\CommentTok{\# do logistic regression modelusing training data and k{-}fold}
+\NormalTok{model\_log }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data=}\NormalTok{train\_data, }
+                   \AttributeTok{method=}\StringTok{"glm"}\NormalTok{, }
+                   \AttributeTok{family=}\NormalTok{binomial, }
+                   \AttributeTok{trControl=}\NormalTok{ctrl)}
+\CommentTok{\#Calculate error rate}
+\NormalTok{predict\_logit }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_log, }\AttributeTok{newdata=}\NormalTok{test\_data)}
+\NormalTok{er\_logit }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_logit }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{model\_log}\SpecialCharTok{$}\NormalTok{finalModel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:  NULL
+## 
+## Coefficients:
+## (Intercept)          Age          BMI      Glucose     Pressure     Pregnant  
+##    -8.68285      0.01724      0.09105      0.03841     -0.01309      0.11699  
+## 
+## Degrees of Freedom: 499 Total (i.e. Null);  494 Residual
+## Null Deviance:       629.8 
+## Residual Deviance: 460.4     AIC: 472.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate logistic regression:"}\NormalTok{, er\_logit))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate logistic regression: 0.241071428571429"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#3b Logistic + Regularisation}
+\CommentTok{\# do logistic regression with reguralisation model using training data and k{-}fold}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_logreg }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                      \AttributeTok{data =}\NormalTok{ train\_data, }
+                      \AttributeTok{method =} \StringTok{"glmnet"}\NormalTok{, }
+                      \AttributeTok{trControl =}\NormalTok{ ctrl,}
+                      \AttributeTok{tuneGrid =} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{alpha =} \DecValTok{0}\NormalTok{, }\AttributeTok{lambda =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\AttributeTok{by=}\FloatTok{0.01}\NormalTok{)))}
+\NormalTok{predict\_logreg }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_logreg, }\AttributeTok{newdata=}\NormalTok{test\_data)}
+\NormalTok{er\_logreg }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_logreg }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{model\_logreg}\SpecialCharTok{$}\NormalTok{bestTune}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   alpha lambda
+## 7     0   0.06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate logistic regression with regularisation:"}\NormalTok{, er\_logreg))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate logistic regression with regularisation: 0.254464285714286"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#3c Logistic + PCA}
+\CommentTok{\#Perform PCA}
+\NormalTok{pca\_data }\OtherTok{\textless{}{-}} \FunctionTok{prcomp}\NormalTok{(data[, }\FunctionTok{c}\NormalTok{(}\StringTok{"Age"}\NormalTok{, }\StringTok{"BMI"}\NormalTok{, }\StringTok{"Glucose"}\NormalTok{, }
+                                  \StringTok{"Pressure"}\NormalTok{, }\StringTok{"Pregnant"}\NormalTok{)], }\AttributeTok{scale. =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{pca\_comp }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(pca\_data}\SpecialCharTok{$}\NormalTok{x[, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{])}
+\NormalTok{pca\_comp}\SpecialCharTok{$}\NormalTok{Diabetes }\OtherTok{\textless{}{-}}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{Diabetes}
+
+\CommentTok{\#Separate data}
+\NormalTok{train\_pca }\OtherTok{\textless{}{-}}\NormalTok{ pca\_comp[}\DecValTok{225}\SpecialCharTok{:}\DecValTok{724}\NormalTok{,]}
+\NormalTok{test\_pca }\OtherTok{\textless{}{-}}\NormalTok{ pca\_comp[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{224}\NormalTok{,]}
+\CommentTok{\# Train logistic regression model on the first two principal components}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_logpca }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                            \AttributeTok{data =}\NormalTok{ train\_pca, }
+                            \AttributeTok{method =} \StringTok{"glm"}\NormalTok{, }
+                            \AttributeTok{family =}\NormalTok{ binomial, }
+                            \AttributeTok{trControl =}\NormalTok{ ctrl)}
+\CommentTok{\#Calculate error rate}
+\NormalTok{predict\_logpca }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_logpca, }\AttributeTok{newdata=}\NormalTok{test\_pca)}
+\NormalTok{er\_logpca }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_logpca }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{model\_logpca}\SpecialCharTok{$}\NormalTok{finalModel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:  NULL
+## 
+## Coefficients:
+## (Intercept)          PC1          PC2  
+##     -0.9115      -0.7842       0.4800  
+## 
+## Degrees of Freedom: 499 Total (i.e. Null);  497 Residual
+## Null Deviance:       629.8 
+## Residual Deviance: 515.8     AIC: 521.8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate logistic regression with regularisation:"}\NormalTok{, er\_logpca))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate logistic regression with regularisation: 0.303571428571429"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#4 Naïve Bayes classifier}
+\CommentTok{\# Define a sequence of classification thresholds to test}
+\NormalTok{thrshld }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.9}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)}
+
+\CommentTok{\# Create empty list and vector}
+\NormalTok{models }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+\NormalTok{finalmodels }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+\NormalTok{er\_train }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\FunctionTok{length}\NormalTok{(thrshld))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\CommentTok{\# Naive Bayes with several trashhold}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{seq\_along}\NormalTok{(thrshld)) \{}
+\NormalTok{  model\_nb }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                    \AttributeTok{data =}\NormalTok{ train\_data, }
+                    \AttributeTok{method =} \StringTok{"naive\_bayes"}\NormalTok{,}
+                    \AttributeTok{trControl =}\NormalTok{ ctrl)}
+  
+  \CommentTok{\# selecting trashold}
+\NormalTok{  predict\_nb }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{predict}\NormalTok{(model\_nb, }\AttributeTok{newdata =}\NormalTok{ train\_data, }
+                               \AttributeTok{type =} \StringTok{"prob"}\NormalTok{)[, }\DecValTok{2}\NormalTok{] }\SpecialCharTok{\textgreater{}}\NormalTok{ thrshld[i], }\StringTok{"pos"}\NormalTok{, }\StringTok{"neg"}\NormalTok{)}
+\NormalTok{  er\_train[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_nb }\SpecialCharTok{!=}\NormalTok{ train\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{  models[[i]] }\OtherTok{\textless{}{-}}\NormalTok{ model\_nb}
+\NormalTok{  finalmodels }\OtherTok{\textless{}{-}}\NormalTok{ model\_nb}\SpecialCharTok{$}\NormalTok{finalModel}
+\NormalTok{\}}
+\CommentTok{\# Find the index of the minimum error rate}
+\NormalTok{min\_error\_index }\OtherTok{\textless{}{-}} \FunctionTok{which.min}\NormalTok{(er\_train)}
+\NormalTok{predict\_bayes }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{predict}\NormalTok{(models[[min\_error\_index]], }\AttributeTok{newdata =}\NormalTok{ test\_data, }
+                                \AttributeTok{type =} \StringTok{"prob"}\NormalTok{)[, }\DecValTok{2}\NormalTok{] }\SpecialCharTok{\textgreater{}}\NormalTok{ thrshld[min\_error\_index], }
+                        \StringTok{"pos"}\NormalTok{, }\StringTok{"neg"}\NormalTok{)}
+\NormalTok{er\_bayes }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_bayes }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{models [[min\_error\_index]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Naive Bayes 
+## 
+## 500 samples
+##   5 predictor
+##   2 classes: 'neg', 'pos' 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold) 
+## Summary of sample sizes: 451, 450, 450, 450, 449, 450, ... 
+## Resampling results across tuning parameters:
+## 
+##   usekernel  Accuracy   Kappa    
+##   FALSE      0.7456839  0.4093166
+##    TRUE      0.7616871  0.4402924
+## 
+## Tuning parameter 'laplace' was held constant at a value of 0
+## Tuning
+##  parameter 'adjust' was held constant at a value of 1
+## Accuracy was used to select the optimal model using the largest value.
+## The final values used for the model were laplace = 0, usekernel = TRUE
+##  and adjust = 1.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Minimum error rate Naive Bayesian:"}\NormalTok{, er\_bayes,}
+          \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}\StringTok{"Threshold:"}\NormalTok{, thrshld[min\_error\_index]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Minimum error rate Naive Bayesian: 0.263392857142857 
+##  Threshold: 0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 5a. KNN}
+\CommentTok{\# Train KNN models with varying K values}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_knn }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                   \AttributeTok{data =}\NormalTok{ train\_data, }
+                   \AttributeTok{method =} \StringTok{"knn"}\NormalTok{,}
+                   \AttributeTok{trControl =}\NormalTok{ ctrl)}
+\CommentTok{\# Calculate error rate}
+\NormalTok{predict\_knn }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_knn, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
+\NormalTok{er\_knn }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_knn }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{model\_knn}\SpecialCharTok{$}\NormalTok{finalModel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 9-nearest neighbor model
+## Training set outcome distribution:
+## 
+## neg pos 
+## 338 162
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Value of K for KNN:"}\NormalTok{, model\_knn}\SpecialCharTok{$}\NormalTok{finalModel}\SpecialCharTok{$}\NormalTok{k))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Value of K for KNN: 9"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate for KNN:"}\NormalTok{, er\_knn))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate for KNN: 0.272321428571429"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 5b. Single pruned classification tree}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_tree }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                    \AttributeTok{data =}\NormalTok{ train\_data, }
+                    \AttributeTok{method =} \StringTok{"rpart"}\NormalTok{, }
+                    \AttributeTok{trControl =}\NormalTok{ ctrl,}
+                    \AttributeTok{tuneGrid =} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{cp=}\FloatTok{0.01}\NormalTok{))}
+\FunctionTok{library}\NormalTok{(rpart.plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'rpart.plot' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: rpart
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'rpart' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rpart.plot}\NormalTok{(model\_tree}\SpecialCharTok{$}\NormalTok{finalMode)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 5b-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate the error rate}
+\NormalTok{predict\_tree }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_tree, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
+\NormalTok{er\_tree }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_tree }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate for single pruned classification tree:"}\NormalTok{, er\_tree))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate for single pruned classification tree: 0.299107142857143"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 6a Random forest}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_rf }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                  \AttributeTok{data =}\NormalTok{ train\_data, }
+                  \AttributeTok{method =} \StringTok{"rf"}\NormalTok{,}
+                  \AttributeTok{trControl =}\NormalTok{ ctrl)}
+\CommentTok{\# Calculate error rate}
+\NormalTok{predict\_rf }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_rf, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
+\NormalTok{er\_rf }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_rf }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{model\_rf}\SpecialCharTok{$}\NormalTok{finalModel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+##  randomForest(x = x, y = y, mtry = param$mtry) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 3
+## 
+##         OOB estimate of  error rate: 23.2%
+## Confusion matrix:
+##     neg pos class.error
+## neg 291  47   0.1390533
+## pos  69  93   0.4259259
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate for Random Forest:"}\NormalTok{, er\_rf))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate for Random Forest: 0.241071428571429"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xgbGrid }\OtherTok{\textless{}{-}} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{nrounds =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+                       \AttributeTok{max\_depth =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{),}
+                       \AttributeTok{eta =} \FunctionTok{c}\NormalTok{(.}\DecValTok{1}\NormalTok{, .}\DecValTok{4}\NormalTok{),}
+                       \AttributeTok{gamma =} \DecValTok{0}\NormalTok{,}
+                       \AttributeTok{colsample\_bytree =}\NormalTok{ .}\DecValTok{7}\NormalTok{,}
+                       \AttributeTok{min\_child\_weight =} \DecValTok{1}\NormalTok{,}
+                       \AttributeTok{subsample =} \FunctionTok{c}\NormalTok{(.}\DecValTok{8}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_boost }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                     \AttributeTok{data =}\NormalTok{ train\_data, }
+                     \AttributeTok{method =} \StringTok{"xgbTree"}\NormalTok{,}
+                     \AttributeTok{trControl =}\NormalTok{ ctrl,}\AttributeTok{metric =} \StringTok{"ROC"}\NormalTok{,}
+                     \AttributeTok{preProc =} \FunctionTok{c}\NormalTok{(}\StringTok{"center"}\NormalTok{, }\StringTok{"scale"}\NormalTok{),}
+                     \AttributeTok{tuneGrid =}\NormalTok{ xgbGrid)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in train.default(x, y, weights = w, ...): The metric "ROC" was not in
+## the result set. Accuracy will be used instead.
+\end{verbatim}
+
+\begin{verbatim}
+## [21:46:57] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:57] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:57] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:57] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:58] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+## [21:46:59] WARNING: src/c_api/c_api.cc:935: `ntree_limit` is deprecated, use `iteration_range` instead.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate error rate}
+\NormalTok{predict\_boost }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_boost, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
+\NormalTok{er\_boost }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_boost }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{model\_boost}\SpecialCharTok{$}\NormalTok{finalModel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ##### xgb.Booster
+## raw: 18.4 Kb 
+## call:
+##   xgboost::xgb.train(params = list(eta = param$eta, max_depth = param$max_depth, 
+##     gamma = param$gamma, colsample_bytree = param$colsample_bytree, 
+##     min_child_weight = param$min_child_weight, subsample = param$subsample), 
+##     data = x, nrounds = param$nrounds, objective = "binary:logistic")
+## params (as set within xgb.train):
+##   eta = "0.4", max_depth = "4", gamma = "0", colsample_bytree = "0.7", min_child_weight = "1", subsample = "0.8", objective = "binary:logistic", validate_parameters = "TRUE"
+## xgb.attributes:
+##   niter
+## callbacks:
+##   cb.print.evaluation(period = print_every_n)
+## # of features: 5 
+## niter: 10
+## nfeatures : 5 
+## xNames : Age BMI Glucose Pressure Pregnant 
+## problemType : Classification 
+## tuneValue :
+##     nrounds max_depth eta gamma colsample_bytree min_child_weight subsample
+## 14      10         4 0.4     0              0.7                1       0.8
+## obsLevels : neg pos 
+## param :
+##  list()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate for Boosted Trees:"}\NormalTok{, er\_boost))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate for Boosted Trees: 0.272321428571429"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#7a Support vector classifier}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_svc }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                   \AttributeTok{data =}\NormalTok{ train\_data, }
+                   \AttributeTok{method =} \StringTok{"svmLinear"}\NormalTok{,}
+                   \AttributeTok{trControl =}\NormalTok{ ctrl,}
+                   \AttributeTok{preProcess =} \FunctionTok{c}\NormalTok{(}\StringTok{"center"}\NormalTok{,}\StringTok{"scale"}\NormalTok{),}
+                   \AttributeTok{tuneGrid =} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{C =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.00001}\NormalTok{, }\DecValTok{2}\NormalTok{, }\AttributeTok{length =} \DecValTok{20}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## maximum number of iterations reached 0.004045684 0.004009786maximum number of iterations reached 0.005068181 0.004966491maximum number of iterations reached 0.00515884 0.005056422maximum number of iterations reached 0.005193034 0.005099035maximum number of iterations reached 0.005759452 0.005668658maximum number of iterations reached 0.004316341 0.004231941maximum number of iterations reached 0.005335276 0.005239977maximum number of iterations reached 0.005717906 0.0055998maximum number of iterations reached 0.006312216 0.006199188maximum number of iterations reached 0.005936377 0.005812843
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate error rate}
+\NormalTok{predict\_svc }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_svc, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
+\NormalTok{er\_svc }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_svc }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{model\_svc}\SpecialCharTok{$}\NormalTok{finalModel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Support Vector Machine object of class "ksvm" 
+## 
+## SV type: C-svc  (classification) 
+##  parameter : cost C = 1.78947473684211 
+## 
+## Linear (vanilla) kernel function. 
+## 
+## Number of Support Vectors : 253 
+## 
+## Objective Function Value : -447.0192 
+## Training error : 0.224 
+## Probability model included.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate for Support Vector Classifier (SVC):"}\NormalTok{, er\_svc))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate for Support Vector Classifier (SVC): 0.245535714285714"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#7b support vector machine classifier}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_svm }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                   \AttributeTok{data =}\NormalTok{ train\_data, }
+                   \AttributeTok{method =} \StringTok{"svmRadial"}\NormalTok{,}
+                   \AttributeTok{trControl =}\NormalTok{ ctrl,}
+                   \AttributeTok{preProcess =} \FunctionTok{c}\NormalTok{(}\StringTok{"center"}\NormalTok{,}\StringTok{"scale"}\NormalTok{),}
+                   \AttributeTok{tuneLength  =} \DecValTok{20}\NormalTok{)}
+
+\CommentTok{\# Calculate error rate}
+\NormalTok{predict\_svm }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_svm, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
+\NormalTok{er\_svm }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_svm }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\NormalTok{model\_svm}\SpecialCharTok{$}\NormalTok{finalModel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Support Vector Machine object of class "ksvm" 
+## 
+## SV type: C-svc  (classification) 
+##  parameter : cost C = 1 
+## 
+## Gaussian Radial Basis kernel function. 
+##  Hyperparameter : sigma =  0.231095461795069 
+## 
+## Number of Support Vectors : 277 
+## 
+## Objective Function Value : -226.3815 
+## Training error : 0.196 
+## Probability model included.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate for Support Vector Machine (SVM) Classifier:"}\NormalTok{, er\_svm))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate for Support Vector Machine (SVM) Classifier: 0.232142857142857"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 8 Best two model}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.1
+## v lubridate 1.9.3     v tibble    3.2.1
+## v purrr     1.0.2     v tidyr     1.3.0
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## x purrr::lift()   masks caret::lift()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result}\OtherTok{\textless{}{-}}\FunctionTok{tibble}\NormalTok{(}\AttributeTok{Model=}\FunctionTok{c}\NormalTok{(}\StringTok{"most frequent"}\NormalTok{,}\StringTok{"Logistic"}\NormalTok{,}\StringTok{"Log w/ Regularisation"}\NormalTok{,}
+                       \StringTok{"Log w/PCA"}\NormalTok{,}\StringTok{"Naive Bayes"}\NormalTok{,}\StringTok{"KNN"}\NormalTok{,}\StringTok{"C\_Tree"}\NormalTok{,}
+                       \StringTok{"Random Forest"}\NormalTok{,}\StringTok{"Boosted Trees"}\NormalTok{,}\StringTok{"SVC"}\NormalTok{,}\StringTok{"SVM"}\NormalTok{),}
+               \AttributeTok{Error\_Rate=}\FunctionTok{c}\NormalTok{(error\_rate,er\_logit,er\_logreg,er\_logpca,}
+\NormalTok{                            er\_bayes,er\_knn,er\_tree,er\_rf,}
+\NormalTok{                            er\_boost,er\_svc,er\_svm))}
+\NormalTok{result }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{arrange}\NormalTok{(Error\_Rate) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Error\_Rate =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%.5f"}\NormalTok{, Error\_Rate))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11 x 2
+##    Model                 Error_Rate
+##    <chr>                 <chr>     
+##  1 SVM                   0.23214   
+##  2 Logistic              0.24107   
+##  3 Random Forest         0.24107   
+##  4 SVC                   0.24554   
+##  5 Log w/ Regularisation 0.25446   
+##  6 Naive Bayes           0.26339   
+##  7 KNN                   0.27232   
+##  8 Boosted Trees         0.27232   
+##  9 C_Tree                0.29911   
+## 10 Log w/PCA             0.30357   
+## 11 most frequent         0.38839
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#9 Combination}
+\FunctionTok{library}\NormalTok{(caretEnsemble)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'caretEnsemble' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'caretEnsemble'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggplot2':
+## 
+##     autoplot
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ctrl1 }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method=}\StringTok{"cv"}\NormalTok{, }
+                     \AttributeTok{number=}\DecValTok{10}\NormalTok{, }
+                     \AttributeTok{savePredictions=}\StringTok{"all"}\NormalTok{,}
+                     \AttributeTok{index =} \FunctionTok{createResample}\NormalTok{(train\_data}\SpecialCharTok{$}\NormalTok{Diabetes, }\DecValTok{10}\NormalTok{),}
+                     \AttributeTok{classProbs=}\ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\# Model Logistic and SVM}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_comb }\OtherTok{\textless{}{-}} \FunctionTok{caretList}\NormalTok{(}
+\NormalTok{  Diabetes}\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data=}\NormalTok{train\_data,}
+  \AttributeTok{trControl=}\NormalTok{ctrl1,}
+  \AttributeTok{methodList=}\FunctionTok{c}\NormalTok{(}\StringTok{"glm"}\NormalTok{, }\StringTok{"svmRadial"}\NormalTok{))}
+\CommentTok{\# Combine models using majority voting}
+\NormalTok{ensemble }\OtherTok{\textless{}{-}} \FunctionTok{caretEnsemble}\NormalTok{(model\_comb)}
+\CommentTok{\# Calculate error rate }
+\NormalTok{predict\_comb }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(ensemble, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
+\NormalTok{er\_comb }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_comb }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate for mixture model:"}\NormalTok{, er\_comb))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate for mixture model: 0.258928571428571"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#SVM}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_svm\_all }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                   \AttributeTok{data =}\NormalTok{ data, }
+                   \AttributeTok{method =} \StringTok{"svmRadial"}\NormalTok{,}
+                   \AttributeTok{trControl =}\NormalTok{ ctrl,}
+                   \AttributeTok{preProcess =} \FunctionTok{c}\NormalTok{(}\StringTok{"center"}\NormalTok{,}\StringTok{"scale"}\NormalTok{),}
+                   \AttributeTok{tuneLength  =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## line search fails -0.0832396 0.4573634 1.464205e-05 -5.859211e-07 -1.819094e-09 1.919168e-09 -2.775974e-14
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$predict(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class prediction calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$prob(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class probability calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in data.frame(..., check.names = FALSE): row names were found from a
+## short variable and have been discarded
+\end{verbatim}
+
+\begin{verbatim}
+## line search fails -0.08301847 0.4243167 1.560394e-05 -5.704016e-07 -1.866935e-09 1.052975e-09 -2.973216e-14
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$predict(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class prediction calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$prob(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class probability calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in data.frame(..., check.names = FALSE): row names were found from a
+## short variable and have been discarded
+\end{verbatim}
+
+\begin{verbatim}
+## line search fails -0.08495165 0.4710825 1.046328e-05 -3.603407e-07 -1.235745e-09 1.271499e-09 -1.338812e-14
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$predict(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class prediction calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$prob(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class probability calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in data.frame(..., check.names = FALSE): row names were found from a
+## short variable and have been discarded
+\end{verbatim}
+
+\begin{verbatim}
+## line search fails -0.08937887 0.3972728 1.10105e-05 -3.470722e-07 -1.475621e-09 -2.729944e-10 -1.615257e-14
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$predict(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class prediction calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$prob(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class probability calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in data.frame(..., check.names = FALSE): row names were found from a
+## short variable and have been discarded
+\end{verbatim}
+
+\begin{verbatim}
+## line search fails -0.07824909 0.450084 1.194954e-05 -4.197426e-07 -1.54115e-09 4.756309e-10 -1.861569e-14
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$predict(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class prediction calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$prob(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class probability calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in data.frame(..., check.names = FALSE): row names were found from a
+## short variable and have been discarded
+\end{verbatim}
+
+\begin{verbatim}
+## line search fails -0.196348 0.4780452 1.153597e-05 -8.700208e-07 -6.975103e-09 3.363652e-09 -8.3391e-14
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$predict(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class prediction calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in method$prob(modelFit = modelFit, newdata = newdata, submodels =
+## param): kernlab class probability calculations failed; returning NAs
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in data.frame(..., check.names = FALSE): row names were found from a
+## short variable and have been discarded
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in nominalTrainWorkflow(x = x, y = y, wts = weights, info = trainInfo,
+## : There were missing values in resampled performance measures.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate error rate}
+\NormalTok{predict\_svm\_all }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_svm\_all, test\_data)}
+\NormalTok{er\_svm\_all }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_svm\_all }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate SVM All:"}\NormalTok{, er\_svm\_all))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate SVM All: 0.227678571428571"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Logistic}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_log\_all }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(Diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data=}\NormalTok{data, }
+                   \AttributeTok{method=}\StringTok{"glm"}\NormalTok{, }
+                   \AttributeTok{family=}\NormalTok{binomial, }
+                   \AttributeTok{trControl=}\NormalTok{ctrl)}
+\CommentTok{\#Calculate error rate}
+\NormalTok{predict\_logit\_all }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_log\_all, test\_data)}
+\NormalTok{er\_logit\_all }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_logit\_all }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate logistic regression:"}\NormalTok{, er\_logit\_all))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate logistic regression: 0.232142857142857"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Mixture}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{model\_comb\_all }\OtherTok{\textless{}{-}} \FunctionTok{caretList}\NormalTok{(}
+\NormalTok{  Diabetes}\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data=}\NormalTok{data,}
+  \AttributeTok{trControl=}\NormalTok{ctrl1,}
+  \AttributeTok{methodList=}\FunctionTok{c}\NormalTok{(}\StringTok{"glm"}\NormalTok{, }\StringTok{"svmRadial"}\NormalTok{))}
+\CommentTok{\# Combine models using majority voting}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{ensemble\_all }\OtherTok{\textless{}{-}} \FunctionTok{caretEnsemble}\NormalTok{(model\_comb\_all)}
+\CommentTok{\# Calculate error rate }
+\NormalTok{predict\_comb\_all }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(ensemble\_all, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
+\NormalTok{er\_comb\_all }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predict\_comb\_all }\SpecialCharTok{!=}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Diabetes)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Error rate for mixture model:"}\NormalTok{, er\_comb\_all))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Error rate for mixture model: 0.241071428571429"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#11 Clustering}
+\FunctionTok{library}\NormalTok{ (cluster)}
+
+\CommentTok{\#K{-}Means}
+\CommentTok{\#Devided base on diabetes}
+\NormalTok{pos\_data }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(data, Diabetes }\SpecialCharTok{==} \StringTok{"pos"}\NormalTok{)}
+\NormalTok{neg\_data }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(data, Diabetes }\SpecialCharTok{==} \StringTok{"neg"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(factoextra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Number of cluster}
+\FunctionTok{fviz\_nbclust}\NormalTok{(pos\_data[, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{], }\AttributeTok{FUN =}\NormalTok{ kmeans, }\AttributeTok{method =} \StringTok{"silhouette"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 11.2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_nbclust}\NormalTok{(neg\_data[, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{], }\AttributeTok{FUN =}\NormalTok{ kmeans, }\AttributeTok{method =} \StringTok{"silhouette"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 11.2-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{kmean\_pos }\OtherTok{\textless{}{-}} \FunctionTok{kmeans}\NormalTok{(pos\_data[, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{], }\AttributeTok{centers =} \DecValTok{2}\NormalTok{, }\AttributeTok{nstart =} \DecValTok{10}\NormalTok{)}
+\NormalTok{kmean\_neg }\OtherTok{\textless{}{-}} \FunctionTok{kmeans}\NormalTok{(neg\_data[, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{], }\AttributeTok{centers =} \DecValTok{2}\NormalTok{, }\AttributeTok{nstart =} \DecValTok{10}\NormalTok{)}
+
+
+\CommentTok{\#cluster with switch}
+\NormalTok{pos\_data}\SpecialCharTok{$}\NormalTok{cluster }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(kmean\_pos}\SpecialCharTok{$}\NormalTok{cluster }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{,}
+                                     \FunctionTok{ifelse}\NormalTok{(kmean\_pos}\SpecialCharTok{$}\NormalTok{cluster }\SpecialCharTok{==} \DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }
+\NormalTok{                                            kmean\_pos}\SpecialCharTok{$}\NormalTok{cluster)))}
+
+\NormalTok{neg\_data}\SpecialCharTok{$}\NormalTok{cluster }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(kmean\_neg}\SpecialCharTok{$}\NormalTok{cluster)}
+
+\CommentTok{\#summary from each group}
+\NormalTok{km\_boxplot }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data)\{}
+\NormalTok{  box\_data }\OtherTok{\textless{}{-}}\NormalTok{ data [,}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{]}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{)\{}
+    \FunctionTok{boxplot}\NormalTok{(box\_data[,i]}\SpecialCharTok{\textasciitilde{}}\NormalTok{ cluster,}\AttributeTok{data=}\NormalTok{box\_data, }
+            \AttributeTok{main =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Boxplot of"}\NormalTok{, }\FunctionTok{colnames}\NormalTok{(box\_data)[i], }\StringTok{"by Cluster"}\NormalTok{),}
+            \AttributeTok{xlab =} \StringTok{"Cluster"}\NormalTok{, }\AttributeTok{ylab =} \FunctionTok{colnames}\NormalTok{(box\_data)[i])}
+\NormalTok{  \}}
+\NormalTok{\}}
+\FunctionTok{summary}\NormalTok{(pos\_data}\SpecialCharTok{$}\NormalTok{cluster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   1   2 
+## 122 127
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(neg\_data}\SpecialCharTok{$}\NormalTok{cluster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   1   2 
+## 171 304
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\FunctionTok{km\_boxplot}\NormalTok{ (pos\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 11.4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\FunctionTok{km\_boxplot}\NormalTok{ (neg\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 11.5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pos\_data }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(data, Diabetes }\SpecialCharTok{==} \StringTok{"pos"}\NormalTok{)}
+\NormalTok{neg\_data }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(data, Diabetes }\SpecialCharTok{==} \StringTok{"neg"}\NormalTok{)}
+
+\NormalTok{hierarchical\_pos }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(}\FunctionTok{dist}\NormalTok{(pos\_data[, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{]), }\AttributeTok{method =} \StringTok{"ward.D2"}\NormalTok{) }\CommentTok{\#positive}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(hierarchical\_pos,}\AttributeTok{cex =} \FloatTok{0.7}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 11.6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hierarchical\_neg }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(}\FunctionTok{dist}\NormalTok{(neg\_data[, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{]), }\AttributeTok{method =} \StringTok{"ward.D2"}\NormalTok{)}\CommentTok{\#Negative}
+\FunctionTok{plot}\NormalTok{(hierarchical\_neg,}\AttributeTok{cex =} \FloatTok{0.7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 11.7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Devide into two and get the summary}
+\NormalTok{hrc\_boxplots }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data, dendrogram, k) \{}
+  \CommentTok{\# Cut the dendrogram}
+\NormalTok{  clusters }\OtherTok{\textless{}{-}} \FunctionTok{cutree}\NormalTok{(dendrogram, }\AttributeTok{k =}\NormalTok{ k)}
+  \CommentTok{\# Create boxplot for each variable}
+  \ControlFlowTok{for}\NormalTok{ (variable }\ControlFlowTok{in} \FunctionTok{names}\NormalTok{(data)) \{}
+\NormalTok{    boxplot\_data }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow =} \FunctionTok{nrow}\NormalTok{(data), }\AttributeTok{ncol =}\NormalTok{ k)}
+    \CommentTok{\# Fill the matrix with data for each variable and cluster}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{k) \{}
+\NormalTok{      cluster\_data }\OtherTok{\textless{}{-}}\NormalTok{ data[clusters }\SpecialCharTok{==}\NormalTok{ i, variable]}
+\NormalTok{      boxplot\_data[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(cluster\_data), i] }\OtherTok{\textless{}{-}}\NormalTok{ cluster\_data}
+\NormalTok{    \}}
+    \CommentTok{\# Plot boxplots}
+    \FunctionTok{boxplot}\NormalTok{(boxplot\_data, }
+            \AttributeTok{main =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Boxplot of"}\NormalTok{, variable, }\StringTok{"by Cluster"}\NormalTok{),}
+            \AttributeTok{xlab =} \StringTok{"Cluster"}\NormalTok{, }\AttributeTok{ylab =}\NormalTok{ variable)}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{\# Get summary statistics for each cluster}
+\FunctionTok{summary}\NormalTok{ (}\FunctionTok{as.factor}\NormalTok{(}\FunctionTok{cutree}\NormalTok{(hierarchical\_pos, }\AttributeTok{k=}\DecValTok{2}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   1   2 
+## 137 112
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{ (}\FunctionTok{as.factor}\NormalTok{(}\FunctionTok{cutree}\NormalTok{(hierarchical\_neg, }\AttributeTok{k=}\DecValTok{2}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   1   2 
+## 219 256
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\FunctionTok{hrc\_boxplots}\NormalTok{(pos\_data[, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{], hierarchical\_pos, }\DecValTok{2}\NormalTok{) }\CommentTok{\#Positive}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 11.9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\FunctionTok{hrc\_boxplots}\NormalTok{(neg\_data[, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{], hierarchical\_neg, }\DecValTok{2}\NormalTok{) }\CommentTok{\#Negative}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RMD_334371478_files/figure-latex/Task 11.10-1.pdf}
+
+\end{document}
