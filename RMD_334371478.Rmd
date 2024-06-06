@@ -1,0 +1,403 @@
+---
+title: "RMD_334371478"
+author: '334371478'
+date: "2024-03-28"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+
+```{r initiation}
+rm(list = ls())
+data <- read.csv(file = "diabetes.csv",header=TRUE)
+summary(data)
+data$Diabetes<- as.factor (data$Diabetes)
+train_data <- data[225:724,]
+test_data <- data[1:224,]
+```
+```{r Task 1}
+#Task 1 Relationship between variables
+library(GGally)
+data_eda <- data[,c("Age","BMI","Glucose","Pressure","Pregnant","Diabetes")]
+ggpairs(data_eda)
+```
+```{r Task 2}
+#2 Naive Classifier
+diabetes_count <- table(train_data$Diabetes)
+majority <- names(diabetes_count)[which.max(diabetes_count)]
+
+# Calculate error rate for naïve classifier
+error_rate <- 1 - mean(test_data$Diabetes == majority)
+print(paste("Error rate Naive Classifier:", error_rate))
+```
+```{r Task 3a}
+library(caret)
+#K-Fold CV
+ctrl <- trainControl(method="cv", 
+                     number=10, 
+                     savePredictions="all",
+                     classProbs=TRUE)
+set.seed(1234)
+# do logistic regression modelusing training data and k-fold
+model_log <- train(Diabetes ~., data=train_data, 
+                   method="glm", 
+                   family=binomial, 
+                   trControl=ctrl)
+#Calculate error rate
+predict_logit <- predict(model_log, newdata=test_data)
+er_logit <- mean(predict_logit != test_data$Diabetes)
+model_log$finalModel
+print(paste("Error rate logistic regression:", er_logit))
+```
+```{r Task 3b 1}
+#3b Logistic + Regularisation
+# do logistic regression with reguralisation model using training data and k-fold
+set.seed(1234)
+model_logreg <- train(Diabetes ~ ., 
+                      data = train_data, 
+                      method = "glmnet", 
+                      trControl = ctrl,
+                      tuneGrid = expand.grid(alpha = 0, lambda = seq(0,2,by=0.01)))
+predict_logreg <- predict(model_logreg, newdata=test_data)
+er_logreg <- mean(predict_logreg != test_data$Diabetes)
+model_logreg$bestTune
+```
+```{r Task 3b 2}
+print(paste("Error rate logistic regression with regularisation:", er_logreg))
+```
+
+```{r Task 3c}
+#3c Logistic + PCA
+#Perform PCA
+pca_data <- prcomp(data[, c("Age", "BMI", "Glucose", 
+                                  "Pressure", "Pregnant")], scale. = TRUE)
+pca_comp <- data.frame(pca_data$x[, 1:2])
+pca_comp$Diabetes <- data$Diabetes
+
+#Separate data
+train_pca <- pca_comp[225:724,]
+test_pca <- pca_comp[1:224,]
+# Train logistic regression model on the first two principal components
+set.seed(1234)
+model_logpca <- train(Diabetes ~ ., 
+                            data = train_pca, 
+                            method = "glm", 
+                            family = binomial, 
+                            trControl = ctrl)
+#Calculate error rate
+predict_logpca <- predict(model_logpca, newdata=test_pca)
+er_logpca <- mean(predict_logpca != test_data$Diabetes)
+model_logpca$finalModel
+print(paste("Error rate logistic regression with regularisation:", er_logpca))
+```
+```{r Task 4}
+#4 Naïve Bayes classifier
+# Define a sequence of classification thresholds to test
+thrshld <- seq(0.1, 0.9, by = 0.1)
+
+# Create empty list and vector
+models <- list()
+finalmodels <- list()
+er_train <- numeric(length(thrshld))
+set.seed(1234)
+# Naive Bayes with several trashhold
+for (i in seq_along(thrshld)) {
+  model_nb <- train(Diabetes ~ ., 
+                    data = train_data, 
+                    method = "naive_bayes",
+                    trControl = ctrl)
+  
+  # selecting trashold
+  predict_nb <- ifelse(predict(model_nb, newdata = train_data, 
+                               type = "prob")[, 2] > thrshld[i], "pos", "neg")
+  er_train[i] <- mean(predict_nb != train_data$Diabetes)
+  models[[i]] <- model_nb
+  finalmodels <- model_nb$finalModel
+}
+# Find the index of the minimum error rate
+min_error_index <- which.min(er_train)
+predict_bayes <- ifelse(predict(models[[min_error_index]], newdata = test_data, 
+                                type = "prob")[, 2] > thrshld[min_error_index], 
+                        "pos", "neg")
+er_bayes <- mean(predict_bayes != test_data$Diabetes)
+models [[min_error_index]]
+cat(paste("Minimum error rate Naive Bayesian:", er_bayes,
+          "\n","Threshold:", thrshld[min_error_index]))
+
+```
+```{r Task 5a}
+# 5a. KNN
+# Train KNN models with varying K values
+set.seed(1234)
+model_knn <- train(Diabetes ~ ., 
+                   data = train_data, 
+                   method = "knn",
+                   trControl = ctrl)
+# Calculate error rate
+predict_knn <- predict(model_knn, newdata = test_data)
+er_knn <- mean(predict_knn != test_data$Diabetes)
+model_knn$finalModel
+print(paste("Value of K for KNN:", model_knn$finalModel$k))
+print(paste("Error rate for KNN:", er_knn))
+```
+```{r Task 5b}
+# 5b. Single pruned classification tree
+set.seed(1234)
+model_tree <- train(Diabetes ~ ., 
+                    data = train_data, 
+                    method = "rpart", 
+                    trControl = ctrl,
+                    tuneGrid = data.frame(cp=0.01))
+library(rpart.plot)
+rpart.plot(model_tree$finalMode)
+```
+```{r Task 5b 2}
+# Calculate the error rate
+predict_tree <- predict(model_tree, newdata = test_data)
+er_tree <- mean(predict_tree != test_data$Diabetes)
+print(paste("Error rate for single pruned classification tree:", er_tree))
+```
+```{r Task 6a}
+# 6a Random forest
+set.seed(1234)
+model_rf <- train(Diabetes ~ ., 
+                  data = train_data, 
+                  method = "rf",
+                  trControl = ctrl)
+# Calculate error rate
+predict_rf <- predict(model_rf, newdata = test_data)
+er_rf <- mean(predict_rf != test_data$Diabetes)
+model_rf$finalModel
+print(paste("Error rate for Random Forest:", er_rf))
+```
+```{r Task 6b}
+xgbGrid <- expand.grid(nrounds = c(1, 10),
+                       max_depth = c(1, 4),
+                       eta = c(.1, .4),
+                       gamma = 0,
+                       colsample_bytree = .7,
+                       min_child_weight = 1,
+                       subsample = c(.8, 1))
+set.seed(1234)
+model_boost <- train(Diabetes ~ ., 
+                     data = train_data, 
+                     method = "xgbTree",
+                     trControl = ctrl,metric = "ROC",
+                     preProc = c("center", "scale"),
+                     tuneGrid = xgbGrid)
+
+# Calculate error rate
+predict_boost <- predict(model_boost, newdata = test_data)
+er_boost <- mean(predict_boost != test_data$Diabetes)
+model_boost$finalModel
+print(paste("Error rate for Boosted Trees:", er_boost))
+```
+```{r Task 7a}
+#7a Support vector classifier
+set.seed(1234)
+model_svc <- train(Diabetes ~ ., 
+                   data = train_data, 
+                   method = "svmLinear",
+                   trControl = ctrl,
+                   preProcess = c("center","scale"),
+                   tuneGrid = expand.grid(C = seq(0.00001, 2, length = 20)))
+
+# Calculate error rate
+predict_svc <- predict(model_svc, newdata = test_data)
+er_svc <- mean(predict_svc != test_data$Diabetes)
+model_svc$finalModel
+print(paste("Error rate for Support Vector Classifier (SVC):", er_svc))
+```
+```{r Task 7b}
+#7b support vector machine classifier
+set.seed(1234)
+model_svm <- train(Diabetes ~ ., 
+                   data = train_data, 
+                   method = "svmRadial",
+                   trControl = ctrl,
+                   preProcess = c("center","scale"),
+                   tuneLength  = 20)
+
+# Calculate error rate
+predict_svm <- predict(model_svm, newdata = test_data)
+er_svm <- mean(predict_svm != test_data$Diabetes)
+model_svm$finalModel
+print(paste("Error rate for Support Vector Machine (SVM) Classifier:", er_svm))
+```
+```{r Task 8}
+# 8 Best two model
+library(tidyverse)
+result<-tibble(Model=c("most frequent","Logistic","Log w/ Regularisation",
+                       "Log w/PCA","Naive Bayes","KNN","C_Tree",
+                       "Random Forest","Boosted Trees","SVC","SVM"),
+               Error_Rate=c(error_rate,er_logit,er_logreg,er_logpca,
+                            er_bayes,er_knn,er_tree,er_rf,
+                            er_boost,er_svc,er_svm))
+result %>% 
+  arrange(Error_Rate) %>% 
+  mutate(Error_Rate = sprintf("%.5f", Error_Rate))
+```
+```{r Task 9}
+#9 Combination
+library(caretEnsemble)
+ctrl1 <- trainControl(method="cv", 
+                     number=10, 
+                     savePredictions="all",
+                     index = createResample(train_data$Diabetes, 10),
+                     classProbs=TRUE)
+# Model Logistic and SVM
+set.seed(1234)
+model_comb <- caretList(
+  Diabetes~., data=train_data,
+  trControl=ctrl1,
+  methodList=c("glm", "svmRadial"))
+# Combine models using majority voting
+ensemble <- caretEnsemble(model_comb)
+# Calculate error rate 
+predict_comb <- predict(ensemble, newdata = test_data)
+er_comb <- mean(predict_comb != test_data$Diabetes)
+print(paste("Error rate for mixture model:", er_comb))
+```
+```{r Task 10 SVM}
+#SVM
+set.seed(1234)
+model_svm_all <- train(Diabetes ~ ., 
+                   data = data, 
+                   method = "svmRadial",
+                   trControl = ctrl,
+                   preProcess = c("center","scale"),
+                   tuneLength  = 20)
+
+# Calculate error rate
+predict_svm_all <- predict(model_svm_all, test_data)
+er_svm_all <- mean(predict_svm_all != test_data$Diabetes)
+print(paste("Error rate SVM All:", er_svm_all))
+```
+```{r Task 10 Logistic}
+#Logistic
+set.seed(1234)
+model_log_all <- train(Diabetes ~., data=data, 
+                   method="glm", 
+                   family=binomial, 
+                   trControl=ctrl)
+#Calculate error rate
+predict_logit_all <- predict(model_log_all, test_data)
+er_logit_all <- mean(predict_logit_all != test_data$Diabetes)
+print(paste("Error rate logistic regression:", er_logit_all))
+
+```
+```{r Task 10 Mix}
+#Mixture
+set.seed(1234)
+model_comb_all <- caretList(
+  Diabetes~., data=data,
+  trControl=ctrl1,
+  methodList=c("glm", "svmRadial"))
+# Combine models using majority voting
+set.seed(1234)
+ensemble_all <- caretEnsemble(model_comb_all)
+# Calculate error rate 
+predict_comb_all <- predict(ensemble_all, newdata = test_data)
+er_comb_all <- mean(predict_comb_all != test_data$Diabetes)
+print(paste("Error rate for mixture model:", er_comb_all))
+```
+```{r Task 11.1}
+#11 Clustering
+library (cluster)
+
+#K-Means
+#Devided base on diabetes
+pos_data <- filter(data, Diabetes == "pos")
+neg_data <- filter(data, Diabetes == "neg")
+```
+
+```{r Task 11.2}
+library(factoextra)
+#Number of cluster
+fviz_nbclust(pos_data[, -2], FUN = kmeans, method = "silhouette")
+fviz_nbclust(neg_data[, -2], FUN = kmeans, method = "silhouette")
+```
+```{r Task 11.3}
+set.seed(1234)
+kmean_pos <- kmeans(pos_data[, -2], centers = 2, nstart = 10)
+kmean_neg <- kmeans(neg_data[, -2], centers = 2, nstart = 10)
+
+
+#cluster with switch
+pos_data$cluster <- as.factor(ifelse(kmean_pos$cluster == 1, 2,
+                                     ifelse(kmean_pos$cluster == 2, 1, 
+                                            kmean_pos$cluster)))
+
+neg_data$cluster <- as.factor(kmean_neg$cluster)
+
+#summary from each group
+km_boxplot <- function(data){
+  box_data <- data [,-2]
+  for (i in 1:5){
+    boxplot(box_data[,i]~ cluster,data=box_data, 
+            main = paste("Boxplot of", colnames(box_data)[i], "by Cluster"),
+            xlab = "Cluster", ylab = colnames(box_data)[i])
+  }
+}
+summary(pos_data$cluster)
+summary(neg_data$cluster)
+```
+```{r Task 11.4}
+par(mfrow = c(1, 5))
+km_boxplot (pos_data)
+```
+
+```{r Task 11.5}
+par(mfrow = c(1, 5))
+km_boxplot (neg_data)
+```
+```{r Task 11.6}
+pos_data <- filter(data, Diabetes == "pos")
+neg_data <- filter(data, Diabetes == "neg")
+
+hierarchical_pos <- hclust(dist(pos_data[, -2]), method = "ward.D2") #positive
+par(mfrow = c(1, 1))
+plot(hierarchical_pos,cex = 0.7) 
+```
+
+```{r Task 11.7}
+hierarchical_neg <- hclust(dist(neg_data[, -2]), method = "ward.D2")#Negative
+plot(hierarchical_neg,cex = 0.7)
+```
+```{r Task 11.8}
+#Devide into two and get the summary
+hrc_boxplots <- function(data, dendrogram, k) {
+  # Cut the dendrogram
+  clusters <- cutree(dendrogram, k = k)
+  # Create boxplot for each variable
+  for (variable in names(data)) {
+    boxplot_data <- matrix(nrow = nrow(data), ncol = k)
+    # Fill the matrix with data for each variable and cluster
+    for (i in 1:k) {
+      cluster_data <- data[clusters == i, variable]
+      boxplot_data[1:length(cluster_data), i] <- cluster_data
+    }
+    # Plot boxplots
+    boxplot(boxplot_data, 
+            main = paste("Boxplot of", variable, "by Cluster"),
+            xlab = "Cluster", ylab = variable)
+  }
+}
+
+# Get summary statistics for each cluster
+summary (as.factor(cutree(hierarchical_pos, k=2)))
+summary (as.factor(cutree(hierarchical_neg, k=2)))
+```
+
+```{r Task 11.9}
+par(mfrow = c(1, 5))
+hrc_boxplots(pos_data[, -2], hierarchical_pos, 2) #Positive
+```
+
+
+```{r Task 11.10}
+par(mfrow = c(1, 5))
+hrc_boxplots(neg_data[, -2], hierarchical_neg, 2) #Negative
+```
+
